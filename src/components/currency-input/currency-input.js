@@ -7,6 +7,7 @@ const CurrencyInput = () => {
         <select name="currency" id="" className="selectCurrency">
           <option value="">$ USD</option>
           <option value="">₴ UAH</option>
+          <option value="">€ EUR</option>
         </select>
         <input
           type="text"
