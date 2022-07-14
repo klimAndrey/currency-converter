@@ -7,15 +7,15 @@ const genCurencyUrl = (currency) =>
   `https://open.er-api.com/v6/latest/${currency}`;
 
 function App() {
-  const [uah, setUah] = useState(0);
+  const [eur, setUah] = useState(0);
   const [usd, setUsd] = useState(0);
 
 
 
   useEffect(() => {
-    fetch(genCurencyUrl("UAH"))
+    fetch(genCurencyUrl("EUR"))
       .then((res) => res.json())
-      .then((data) => setUsd(() => data.rates.USD));
+      .then((data) => setUsd(() => data.rates.UAH));
 
     fetch(genCurencyUrl("USD"))
       .then((res) => res.json())
@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="app">
-      <AppInfo uah={uah} usd={usd} />
+      <AppInfo eur={eur} usd={usd} />
       <CurrencyExchange />
     </div>
   );
