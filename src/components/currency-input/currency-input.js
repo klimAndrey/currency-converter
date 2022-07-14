@@ -1,3 +1,4 @@
+import ItemCurrency from "../select-item-currency/select-item-currency";
 import "./currency-input.css";
 
 const CurrencyInput = () => {
@@ -5,9 +6,7 @@ const CurrencyInput = () => {
     <>
       <div className="currencyExchange">
         <select name="currency" id="" className="selectCurrency">
-          <option value="">$ USD</option>
-          <option value="">₴ UAH</option>
-          <option value="">€ EUR</option>
+          {["USD", "EUR", "UAH"].map((c) => <ItemCurrency currency={c}></ItemCurrency> )}
         </select>
         <input
           type="text"
