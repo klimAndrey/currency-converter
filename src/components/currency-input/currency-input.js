@@ -6,7 +6,7 @@ const CurrencyInput = () => {
     <>
       <div className="currencyExchange">
         <select name="currency" id="" className="selectCurrency">
-          {["USD", "EUR", "UAH"].map((c) => <ItemCurrency currency={c}></ItemCurrency> )}
+          {["USD", "EUR", "UAH"].map((c) => <ItemCurrency currency={c} key={c}></ItemCurrency> )}
         </select>
         <input
           type="text"
