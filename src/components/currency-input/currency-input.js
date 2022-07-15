@@ -7,14 +7,13 @@ const CurrencyInput = ({ tree, input, setInput, echoInput, initCurrency }) => {
 
   return (
     <>
+    <h1>{selectedCurrency}</h1>
       <div className="currencyExchange">
-        <select name="currency" id="" className="selectCurrency">
-          {["USD", "EUR", "UAH"].map((currency, key) => (
-            <CurrencySelect
-              {...{ selectedCurrency, setSelectedCurrency, currency, key }}
-            ></CurrencySelect>
-          ))}
-        </select>
+        <CurrencySelect {...{
+          setSelectedCurrency,
+          selectedCurrency,
+          currencies: ['USD', 'EUR', 'UAH'], // TODO rm hardcode
+        }}/>
         <input
           type="text"
           placeholder="Введите сумму"
