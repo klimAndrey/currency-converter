@@ -9,11 +9,8 @@ const CurrencySelect = ({
   quoteCurrency,
   input,
   isBase,
-  setInput,
   echoInput,
 }) => {
-  console.log(currencies);
-  console.log(selectedCurrency);
   return (
     <select
       {...{
@@ -23,11 +20,9 @@ const CurrencySelect = ({
           setSelectedCurrency(currentCurrency);
 
           if (isBase) {
-            console.log('hello');
-            echoInput(input * (tree?.[currentCurrency]?.[quoteCurrency] || 0))
+            echoInput(input * (tree?.[currentCurrency]?.[quoteCurrency] || 0));
           } else {
-            console.log('world');
-            echoInput(input / (tree?.[baseCurrency]?.[currentCurrency] || 0))
+            echoInput(input / (tree?.[baseCurrency]?.[currentCurrency] || 0));
           }
         },
       }}

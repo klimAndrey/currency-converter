@@ -1,17 +1,6 @@
 import CurrencySelect from "../currency-select/currency-select";
 import "./currency-input.css";
 
-/**
- *    USD            uah
- *     1     *30      30
- *    uah            usd
- *     1     *0.34     0.34
- *
- *
- *      USD 1     2    3
- *      UAH 30    60   90
- */
-
 const CurrencyInput = ({
   currencies,
   tree,
@@ -32,7 +21,6 @@ const CurrencyInput = ({
             tree,
             input,
             isBase,
-            setInput,
             echoInput,
             baseCurrency,
             quoteCurrency,
@@ -48,12 +36,12 @@ const CurrencyInput = ({
           value={input}
           onChange={(event) => {
             const i = event.target.value;
-            const num = parseFloat(i);
-            const notNumber = !num;
+            
+            if (!/^\d+\.?\d*$/.test(i)) return;
 
-            if (notNumber) return;
+            const num = +i;
 
-            setInput(num);
+            setInput(i);
 
             if (isBase) {
               echoInput(num * (tree?.[baseCurrency]?.[quoteCurrency] || 0));
@@ -68,4 +56,5 @@ const CurrencyInput = ({
     </>
   );
 };
+
 export default CurrencyInput;
