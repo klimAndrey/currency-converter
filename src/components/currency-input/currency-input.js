@@ -15,7 +15,6 @@ const CurrencyInput = ({
 }) => {
   return (
     <>
-      <h1>{isBase ? `Продать ${input} ${baseCurrency}` : `Купить ${input} ${quoteCurrency}`}</h1>
       <div className="currencyExchange">
         <CurrencySelect
           {...{
