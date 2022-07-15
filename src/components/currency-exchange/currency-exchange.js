@@ -2,8 +2,12 @@ import { useState } from "react";
 import CurrencyInput from "../currency-input/currency-input";
 
 const CurrencyExchange = ({ tree }) => {
+  const initBaseCurrency = 'UAH';
+  const initQuoteCurrency = 'USD';
   let [baseInput, setBaseInput] = useState(0);
   let [quoteInput, setQuoteInput] = useState(0);
+  let [baseCurrency, setBaseCurrency] = useState(initBaseCurrency);
+  let [quoteCurrency, setQuoteCurrency] = useState(initQuoteCurrency);
 
   return (
     <>
@@ -13,7 +17,10 @@ const CurrencyExchange = ({ tree }) => {
           input: baseInput,
           setInput: setBaseInput,
           echoInput: setQuoteInput,
-          initCurrency: 'UAH',
+          setSelectedCurrency: setBaseCurrency,
+          baseCurrency,
+          quoteCurrency,
+          isBase: true,
         }}
       />
       <CurrencyInput
@@ -22,7 +29,10 @@ const CurrencyExchange = ({ tree }) => {
           input: quoteInput,
           setInput: setQuoteInput,
           echoInput: setBaseInput,
-          initCurrency: 'USD',
+          setSelectedCurrency: setQuoteCurrency,
+          baseCurrency,
+          quoteCurrency,
+          isBase: false,
         }}
       />
     </>
