@@ -2,14 +2,20 @@ import { useState } from "react";
 import ItemCurrency from "../select-item-currency/select-item-currency";
 import "./currency-input.css";
 
-const CurrencyInput = ({ tree }) => {
-  let [input, setInput] = useState('');
+const CurrencyInput = ({ tree, input, setInput, echoInput, initCurrency }) => {
+  let [currency, setCurrency] = useState(initCurrency);
 
   return (
     <>
       <div className="currencyExchange">
         <select name="currency" id="" className="selectCurrency">
-          {["USD", "EUR", "UAH"].map((c) => <ItemCurrency currency={c} key={c}></ItemCurrency> )}
+          {["USD", "EUR", "UAH"].map((c) => (
+            <ItemCurrency
+              currency={c}
+              key={c}
+              selectedCurrency={currency}
+            ></ItemCurrency>
+          ))}
         </select>
         <input
           type="text"
@@ -22,6 +28,7 @@ const CurrencyInput = ({ tree }) => {
             if (!/^\d*$/.test(i)) return;
 
             setInput(i);
+            echoInput(+i);
           }}
         />
       </div>
