@@ -6,22 +6,23 @@ const CurrencyInput = ({
   tree,
   input,
   setInput,
-  echoInput,
+  setEchoInput,
   setSelectedCurrency,
   baseCurrency,
   quoteCurrency,
   isBase,
+  echoInput,
 }) => {
   return (
     <>
-      <h1>{isBase ? baseCurrency : quoteCurrency}</h1>
+      <h1>{isBase ? `Продать ${input} ${baseCurrency}` : `Купить ${input} ${quoteCurrency}`}</h1>
       <div className="currencyExchange">
         <CurrencySelect
           {...{
             tree,
             input,
             isBase,
-            echoInput,
+            setEchoInput,
             baseCurrency,
             quoteCurrency,
             setSelectedCurrency,
@@ -35,8 +36,17 @@ const CurrencyInput = ({
           className="inputCurrency"
           value={input}
           onChange={(event) => {
-            const i = event.target.value;
-            
+            let i = event.target.value;
+
+            if (i === '') {
+              setInput('');
+              setEchoInput('');
+
+              return;
+            }
+
+            if (/^0\d$/.test(i)) i = i[1];
+
             if (!/^\d+\.?\d*$/.test(i)) return;
 
             const num = +i;
@@ -44,9 +54,9 @@ const CurrencyInput = ({
             setInput(i);
 
             if (isBase) {
-              echoInput(num * (tree?.[baseCurrency]?.[quoteCurrency] || 0));
+              setEchoInput(num * (tree?.[baseCurrency]?.[quoteCurrency] || 0));
             } else {
-              echoInput(
+              setEchoInput(
                 num / (tree?.[baseCurrency]?.[quoteCurrency] || 0) ?? 0
               );
             }

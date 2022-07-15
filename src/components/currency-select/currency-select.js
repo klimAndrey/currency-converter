@@ -9,7 +9,7 @@ const CurrencySelect = ({
   quoteCurrency,
   input,
   isBase,
-  echoInput,
+  setEchoInput,
 }) => {
   return (
     <select
@@ -20,9 +20,9 @@ const CurrencySelect = ({
           setSelectedCurrency(currentCurrency);
 
           if (isBase) {
-            echoInput(input * (tree?.[currentCurrency]?.[quoteCurrency] || 0));
+            setEchoInput(input * (tree?.[currentCurrency]?.[quoteCurrency] || 0));
           } else {
-            echoInput(input / (tree?.[baseCurrency]?.[currentCurrency] || 0));
+            setEchoInput(input / (tree?.[baseCurrency]?.[currentCurrency] || 0));
           }
         },
       }}
