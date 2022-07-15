@@ -7,6 +7,8 @@ import "./app.css";
 const genCurencyUrl = (currency) =>
   `https://open.er-api.com/v6/latest/${currency}`;
 
+const currencies = ['USD', 'UAH', 'EUR'];
+
 function App() {
   const [currencyTree, setCurrencyTree] = useState({});
   const [usd, setUsd] = useState(0);
@@ -16,7 +18,7 @@ function App() {
     const tree = {};
     const requests = [];
 
-    ALL_CURRENCIES.forEach((c) => {
+    currencies.forEach((c) => {
       const req = fetch(genCurencyUrl(c)).then((res) => res.json()).then(({ rates }) => tree[c] = rates);
       requests.push(req);
     });
@@ -31,7 +33,7 @@ function App() {
   return (
     <div className="app">
       <AppInfo usd={usd} eur={eur}/>
-      <CurrencyExchange tree={currencyTree} />
+      <CurrencyExchange {...{tree: currencyTree, currencies }} />
       <pre>
         {JSON.stringify(currencyTree, null, 4)}
       </pre>
