@@ -1,9 +1,10 @@
 import CurrencyInput from '../currency-input/currency-input'
 
-const CurrencyExchange = () => {
+const CurrencyExchange = ({ tree }) => {
+
     return <>
-      <CurrencyInput />
-      <CurrencyInput />
+      <CurrencyInput tree={tree}/>
+      <CurrencyInput tree={tree}/>
     </>
 }
 

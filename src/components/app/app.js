@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="app">
       <AppInfo usd={usd} eur={eur}/>
-      <CurrencyExchange />
+      <CurrencyExchange tree={currencyTree} />
       <pre>
         {JSON.stringify(currencyTree, null, 4)}
       </pre>

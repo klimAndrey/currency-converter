@@ -1,7 +1,10 @@
+import { useState } from "react";
 import ItemCurrency from "../select-item-currency/select-item-currency";
 import "./currency-input.css";
 
-const CurrencyInput = () => {
+const CurrencyInput = ({ tree }) => {
+  let [input, setInput] = useState('');
+
   return (
     <>
       <div className="currencyExchange">
@@ -12,6 +15,14 @@ const CurrencyInput = () => {
           type="text"
           placeholder="Введите сумму"
           className="inputCurrency"
+          value={input}
+          onChange={(event) => {
+            const i = event.target.value;
+
+            if (!/^\d*$/.test(i)) return;
+
+            setInput(i);
+          }}
         />
       </div>
     </>
